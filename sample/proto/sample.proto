@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package sample;
+option go_package = "github.com/mintak21/proto/sample/go";
+
+/**
+ Service that receives an id and returns Person information
+ */
+service AddressService {
+  rpc Search(SampleRequest) returns (SampleResponse);
+}
+
+message SampleRequest {
+  string id = 1; // sequencial id
+}
+
+message SampleResponse {
+  string Person = 1; // person info
+}
+
+message Person {
+  int32 id = 1; // sequencial id
+  string name = 2; // his/her name
+  string age = 3; // his/her age
+  repeated Email email = 4; // his/her email
+}
+
+message Email {
+  string address = 1; // email address
+  EmailDomainType domain = 2; // domain type
+}
+
+enum EmailDomainType {
+  UNKNOWN = 0; // @exclude match API specifications
+  GMAIL = 1;  // google
+  YAHOO_JAPAN = 2; // yahoo japan
+  OUTLOOK = 3; // ms outlook
+  OTHER = 4; // other domains
+}
