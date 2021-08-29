@@ -3,9 +3,9 @@ name: build generator image
 on:
   push:
     branches:
-      - master
-    # paths:
-    #   - Dockerfile
+      - main
+    paths:
+      - Dockerfile
 
 env:
   DOCKER_BUILDKIT: 1
