@@ -1,14 +1,14 @@
 name: build generator image
 
 on:
-  # push:
-  #   branches:
-  #     - master
-  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - Dockerfile
 
 env:
   DOCKER_BUILDKIT: 1
-  IMAGE_CACHE_DIR: tmp/docker/cache
 
 jobs:
   build:
