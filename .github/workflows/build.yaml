@@ -31,10 +31,9 @@ jobs:
         with:
           registry: ghcr.io
           build_file: Dockerfile
+          username: mintak21
           password: ${{ secrets.GHCR_ACCESS_TOKEN }}
           image: proto-builder
-          tag: test
-          # tag: latest
-          username: mintak21
+          tag: latest
           cache: true
           cache_registry: proto-builder-cache
