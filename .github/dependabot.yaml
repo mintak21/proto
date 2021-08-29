@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    target-branch: master
+    labels:
+      - github_actions
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "14:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    reviewers:
+      - mintak21
