@@ -25,15 +25,29 @@ jobs:
         run: |
           echo ::set-output name=source_branch::${GITHUB_REF#refs/heads/}
           echo ::set-output name=source_tag::${GITHUB_REF#refs/tags/}
+      # kaniko actionはgchrに未対応、docker.pkg.github.comならば使用できる
+      # - name: kaniko build
+      #   uses: aevea/action-kaniko@v0.6.1
+      #   with:
+      #     registry: docker.pkg.github.com
+      #     build_file: Dockerfile
+      #     username: mintak21
+      #     password: ${{ secrets.GHCR_ACCESS_TOKEN }}
+      #     image: proto-builder
+      #     tag: latest
+      #     cache: true
+      #     cache_registry: proto-builder-cache
 
-      - name: kaniko build
-        uses: aevea/action-kaniko@v0.6.1
+      - name: Build and Push to GitHub Container Registry
+        id: push-ghcr
+        env:
+          DOCKER_FILE: Dockerfile
+          IMAGE_TAG: latest
+        uses: docker/build-push-action@v1
         with:
           registry: ghcr.io
-          build_file: Dockerfile
-          username: mintak21
+          username: ${{ github.actor }}
           password: ${{ secrets.GHCR_ACCESS_TOKEN }}
-          image: proto-builder
-          tag: latest
-          cache: true
-          cache_registry: proto-builder-cache
+          repository: ${{ github.repository }}-builder
+          dockerfile: ${{ env.DOCKER_FILE }}
+          tags: ${{ env.IMAGE_TAG }}
