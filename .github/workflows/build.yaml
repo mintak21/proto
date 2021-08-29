@@ -32,7 +32,7 @@ jobs:
           registry: docker.pkg.github.com
           build_file: Dockerfile
           password: ${{ secrets.GHCR_ACCESS_TOKEN }}
-          image: mintak21/proto-builder
+          image: proto-builder
           username: mintak21
           cache: true
-          cache_registry: mintak21/proto-builder/cache
+          cache_registry: proto-builder-cache
