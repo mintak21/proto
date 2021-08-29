@@ -27,3 +27,5 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27 \
 RUN mkdir -p ${GOPATH}/src/github.com/envoyproxy \
   && git clone https://github.com/envoyproxy/protoc-gen-validate.git -b v0.6.1 ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate \
   && (cd ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate && make build)
+
+WORKDIR ${GOPATH}/src/github.com/mintak21/proto
