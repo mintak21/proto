@@ -66,7 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | sequencial id |
+| id | [int64](#int64) |  | sequencial id |
 
 
 

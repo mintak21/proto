@@ -3,6 +3,8 @@ syntax = "proto3";
 package sample;
 option go_package = "github.com/mintak21/proto/sample/go";
 
+import "validate/validate.proto";
+
 /**
  Service that receives an id and returns Person information
  */
@@ -11,7 +13,8 @@ service AddressService {
 }
 
 message SampleRequest {
-  string id = 1; // sequencial id
+  int64 id = 1 [(validate.rules).int64 = { gt: 0,  lt: 10000 }]; // sequencial id
+  // int64 id = 1; // sequencial id
 }
 
 message SampleResponse {
