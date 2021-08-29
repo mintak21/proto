@@ -20,4 +20,10 @@ RUN tmpdir=$(mktemp -d) \
 
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27 \
   && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1 \
-  && go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@v1.5
+  && go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@v1.5 \
+  && go install github.com/envoyproxy/protoc-gen-validate@v0.6
+
+# ソースパスに"validate/validate.proto"が必要なためgo installではなくgit cloneしている
+RUN mkdir -p ${GOPATH}/src/github.com/envoyproxy \
+  && git clone https://github.com/envoyproxy/protoc-gen-validate.git -b v0.6.1 ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate \
+  && (cd ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate && make build)
