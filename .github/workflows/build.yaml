@@ -29,7 +29,7 @@ jobs:
       - name: kaniko build
         uses: aevea/action-kaniko@v0.6.1
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           build_file: Dockerfile
           password: ${{ secrets.GHCR_ACCESS_TOKEN }}
           image: proto-builder
