@@ -34,60 +34,22 @@ var (
 )
 
 // Validate checks the field values on SampleRequest with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
 func (m *SampleRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on SampleRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in SampleRequestMultiError, or
-// nil if none found.
-func (m *SampleRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *SampleRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
-	var errors []error
-
 	if val := m.GetId(); val <= 0 || val >= 10000 {
-		err := SampleRequestValidationError{
+		return SampleRequestValidationError{
 			field:  "Id",
 			reason: "value must be inside range (0, 10000)",
 		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
 	}
 
-	if len(errors) > 0 {
-		return SampleRequestMultiError(errors)
-	}
 	return nil
 }
-
-// SampleRequestMultiError is an error wrapping multiple validation errors
-// returned by SampleRequest.ValidateAll() if the designated constraints
-// aren't met.
-type SampleRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m SampleRequestMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m SampleRequestMultiError) AllErrors() []error { return m }
 
 // SampleRequestValidationError is the validation error returned by
 // SampleRequest.Validate if the designated constraints aren't met.
@@ -144,51 +106,17 @@ var _ interface {
 } = SampleRequestValidationError{}
 
 // Validate checks the field values on SampleResponse with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
 func (m *SampleResponse) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on SampleResponse with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in SampleResponseMultiError,
-// or nil if none found.
-func (m *SampleResponse) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *SampleResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
-	var errors []error
-
 	// no validation rules for Person
 
-	if len(errors) > 0 {
-		return SampleResponseMultiError(errors)
-	}
 	return nil
 }
-
-// SampleResponseMultiError is an error wrapping multiple validation errors
-// returned by SampleResponse.ValidateAll() if the designated constraints
-// aren't met.
-type SampleResponseMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m SampleResponseMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m SampleResponseMultiError) AllErrors() []error { return m }
 
 // SampleResponseValidationError is the validation error returned by
 // SampleResponse.Validate if the designated constraints aren't met.
@@ -245,25 +173,11 @@ var _ interface {
 } = SampleResponseValidationError{}
 
 // Validate checks the field values on Person with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
+// proto definition for this message. If any rules are violated, an error is returned.
 func (m *Person) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on Person with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in PersonMultiError, or nil if none found.
-func (m *Person) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *Person) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
-
-	var errors []error
 
 	// no validation rules for Id
 
@@ -274,26 +188,7 @@ func (m *Person) validate(all bool) error {
 	for idx, item := range m.GetEmail() {
 		_, _ = idx, item
 
-		if all {
-			switch v := interface{}(item).(type) {
-			case interface{ ValidateAll() error }:
-				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, PersonValidationError{
-						field:  fmt.Sprintf("Email[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			case interface{ Validate() error }:
-				if err := v.Validate(); err != nil {
-					errors = append(errors, PersonValidationError{
-						field:  fmt.Sprintf("Email[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return PersonValidationError{
 					field:  fmt.Sprintf("Email[%v]", idx),
@@ -305,27 +200,8 @@ func (m *Person) validate(all bool) error {
 
 	}
 
-	if len(errors) > 0 {
-		return PersonMultiError(errors)
-	}
 	return nil
 }
-
-// PersonMultiError is an error wrapping multiple validation errors returned by
-// Person.ValidateAll() if the designated constraints aren't met.
-type PersonMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m PersonMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m PersonMultiError) AllErrors() []error { return m }
 
 // PersonValidationError is the validation error returned by Person.Validate if
 // the designated constraints aren't met.
@@ -382,51 +258,18 @@ var _ interface {
 } = PersonValidationError{}
 
 // Validate checks the field values on Email with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
+// proto definition for this message. If any rules are violated, an error is returned.
 func (m *Email) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on Email with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in EmailMultiError, or nil if none found.
-func (m *Email) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *Email) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
-
-	var errors []error
 
 	// no validation rules for Address
 
 	// no validation rules for Domain
 
-	if len(errors) > 0 {
-		return EmailMultiError(errors)
-	}
 	return nil
 }
-
-// EmailMultiError is an error wrapping multiple validation errors returned by
-// Email.ValidateAll() if the designated constraints aren't met.
-type EmailMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m EmailMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m EmailMultiError) AllErrors() []error { return m }
 
 // EmailValidationError is the validation error returned by Email.Validate if
 // the designated constraints aren't met.

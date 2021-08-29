@@ -14,7 +14,6 @@ service AddressService {
 
 message SampleRequest {
   int64 id = 1 [(validate.rules).int64 = { gt: 0,  lt: 10000 }]; // sequencial id
-  // int64 id = 1; // sequencial id
 }
 
 message SampleResponse {
