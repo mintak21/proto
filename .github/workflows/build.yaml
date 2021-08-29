@@ -1,0 +1,38 @@
+name: build generator image
+
+on:
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+env:
+  DOCKER_BUILDKIT: 1
+  IMAGE_CACHE_DIR: tmp/docker/cache
+
+jobs:
+  build:
+    name: build generator image
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Get Version
+        id: version
+        run: |
+          echo ::set-output name=source_branch::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=source_tag::${GITHUB_REF#refs/tags/}
+
+      - name: kaniko build
+        uses: aevea/action-kaniko@v0.6.1
+        with:
+          registry: docker.pkg.github.com
+          build_file: Dockerfile
+          password: ${{ secrets.GHCR_ACCESS_TOKEN }}
+          image: mintak21/proto-builder
+          username: mintak21
+          cache: true
+          cache_registry: mintak21/proto-builder/cache
