@@ -45,9 +45,11 @@ jobs:
         id: build-push
         uses: docker/build-push-action@v2
         with:
+          builder: ${{ steps.builder.outputs.name }}
           context: .
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ github.repository }}-builder:v2test
+          tags: ghcr.io/mintak21/${{ github.repository }}-builder:v2test
       # v1 のやり方、古い
       # - name: Build and Push to GitHub Container Registry
       #   id: push-ghcr
