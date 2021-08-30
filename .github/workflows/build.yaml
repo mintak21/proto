@@ -52,7 +52,7 @@ jobs:
         with:
           builder: ${{ steps.builder.outputs.name }}
           context: .
-          platforms: linux/amd64,linux/arm64
+          # platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/mintak21/${{ github.repository }}-builder:v2test
       # v1 のやり方、古い
