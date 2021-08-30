@@ -54,7 +54,7 @@ jobs:
           context: .
           # platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/mintak21/${{ github.repository }}-builder:v2test
+          tags: ghcr.io/${{ github.repository }}-builder:v2test
       # v1 のやり方、古い
       # - name: Build and Push to GitHub Container Registry
       #   id: push-ghcr
