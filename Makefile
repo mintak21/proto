@@ -1,6 +1,6 @@
 export DOCKER_BUILDKIT=1
 IMAGE=ghcr.io/mintak21/proto-builder:latest
-BUILD_PATH=/app
+BUILD_PATH=/app/build
 
 .PHONY: build prepare
 

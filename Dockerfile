@@ -1,5 +1,7 @@
 FROM golang:1.17-buster
 
+WORKDIR /app
+
 RUN apt-get update -y \
   && apt-get install --no-install-recommends -y \
   # protobuf-compiler \
@@ -23,7 +25,8 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27 \
 
 # ソースパスに"validate/validate.proto"が必要なためgo installではなくgit cloneしている
 RUN mkdir -p ${GOPATH}/src/github.com/envoyproxy \
-  && git clone https://github.com/envoyproxy/protoc-gen-validate.git -b v0.6.1 ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate \
-  && (cd ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate && make build)
+  && git clone https://github.com/envoyproxy/protoc-gen-validate.git -b v0.6.1 ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate
+WORKDIR ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate
+RUN make build
 
-WORKDIR /app
+WORKDIR /app/build
