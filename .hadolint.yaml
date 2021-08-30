@@ -1,6 +1,8 @@
 failure-threshold: warning # name of threshold level (error | warning | info | style | ignore | none)
 format: checkstyle # Output format (tty | json | checkstyle | codeclimate | gitlab_codeclimate | codacy)
-# ignored: [string] # list of rules
+ignored:
+  - DL3000
+  - SC1010
 # label-schema: # See Linting Labels below for specific label-schema details
 #   author: string # Your name
 #   contact: string # email address
@@ -17,4 +19,6 @@ no-fail: false # true | false
 #   info: [string] # list of rules
 #   style: [string] # list of rules
 strict-labels: false # true | false
-trustedRegistries: docker.io | ghcr.io # registry or list of registries
+trustedRegistries: # registry or list of registries
+  - docker.io
+  - ghcr.io
