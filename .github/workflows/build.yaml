@@ -53,9 +53,8 @@ jobs:
           builder: ${{ steps.builder.outputs.name }}
           context: .
           push: true
-          tags: ${{ github.repository }}-builder:v2test # ghcr.io/ 部分は必要、ただしghcr.io/{username}のusername部分はイメージ名扱いになる
-          # tags: ghcr.io/${{ github.repository }}-builder:v2test # ghcr.io/ 部分は必要、ただしghcr.io/{username}のusername部分はイメージ名扱いになる
-      # v1 のやり方、古い
+          tags: ghcr.io/${{ github.repository }}-builder:latest # ghcr.io/ 部分は必要、ただしghcr.io/{username}のusername部分はイメージ名扱いになる
+      # 以下はv1 のやり方、古い
       # - name: Build and Push to GitHub Container Registry
       #   id: push-ghcr
       #   env:
