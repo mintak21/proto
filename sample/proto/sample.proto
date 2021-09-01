@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package sample;
-option go_package = "github.com/mintak21/proto/sample/go";
+option go_package = "github.com/mintak21/proto/sample";
 
 import "validate/validate.proto";
 
