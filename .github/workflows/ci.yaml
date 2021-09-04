@@ -6,6 +6,21 @@ on:
       - main
 
 jobs:
+  proto-lint:
+    name: proto lint
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Check ProtoFile
+        id: lint
+        uses: plexsystems/protolint-action@v0.4.0
+        with:
+          configDirectory: .
+
   dockerfile-lint:
     name: dockerfile lint
     runs-on: ubuntu-20.04
