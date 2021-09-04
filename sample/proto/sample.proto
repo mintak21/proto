@@ -31,7 +31,7 @@ message Person {
   int32 id = 1; // sequencial id
   string name = 2; // his/her name
   string age = 3; // his/her age
-  repeated Email email = 4; // his/her email
+  repeated Email emails = 4; // his/her email
 }
 
 message Email {
