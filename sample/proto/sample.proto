@@ -7,7 +7,7 @@ import "validate/validate.proto";
 import "google/api/annotations.proto";
 
 /**
- Service that receives an id and returns Person information
+  Service that receives an id and returns Person information
  */
 service AddressService {
   rpc Search(SampleRequest) returns (SampleResponse) {
@@ -33,14 +33,15 @@ message Person {
 }
 
 message Email {
+  enum EmailDomainType {
+    UNKNOWN = 0; // @exclude match API specifications
+    GMAIL = 1;  // google
+    YAHOO_JAPAN = 2; // yahoo japan
+    OUTLOOK = 3; // ms outlook
+    OTHER = 4; // other domains
+  }
+
+
   string address = 1; // email address
   EmailDomainType domain = 2; // domain type
-}
-
-enum EmailDomainType {
-  UNKNOWN = 0; // @exclude match API specifications
-  GMAIL = 1;  // google
-  YAHOO_JAPAN = 2; // yahoo japan
-  OUTLOOK = 3; // ms outlook
-  OTHER = 4; // other domains
 }

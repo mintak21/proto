@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package pancake.baker;
+option go_package = "github.com/mintak21/proto/sample/golang";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+/**
+  Service about Pancake
+ */
+service BakePancakeService {
+
+  // bake pancake service on the specified menu
+  rpc Bake (BakeRequest) returns (BakeResponse) {
+    option (google.api.http) = {
+      post: "/v1/bake"
+      body: "*"
+    };
+  }
+
+  // Get the total number of panques for each menu
+  rpc Report (ReportRequest) returns (ReportResponse) {
+    option (google.api.http) = {
+      get: "/v1/report/{menuID}"
+    };
+  }
+}
+
+message Pancake {
+  // pacake menu
+  enum Menu {
+    UNKNOWN = 0; // @exclude match API specifications
+    CLASSIC = 1;
+    BANANA = 2;
+    BACON_AND_CHEESE = 3;
+    BERRY = 4;
+  }
+
+  string baker_name = 1; // name of chef
+  Menu menu = 2;
+  float techinical_score = 3; // bakeing score
+  google.protobuf.Timestamp create_time = 4; // creation timestamp
+}
+
+/**
+  Report on how much panques were baked
+*/
+message Report {
+  message BakeCount {
+    Pancake.Menu menu = 1;
+    int32 count = 2;
+  }
+  repeated BakeCount bake_counts = 1;
+}
+
+
+message BakeRequest {
+  Pancake.Menu menu = 1;
+}
+
+message BakeResponse {
+  Pancake pancake = 1;
+}
+
+message ReportRequest {}
+
+message ReportResponse {
+  Report report = 1;
+}

@@ -3,17 +3,176 @@
 
 ## Table of Contents
 
+- [sample/proto/pancake.proto](#sample/proto/pancake.proto)
+    - [BakeRequest](#pancake.baker.BakeRequest)
+    - [BakeResponse](#pancake.baker.BakeResponse)
+    - [Pancake](#pancake.baker.Pancake)
+    - [Report](#pancake.baker.Report)
+    - [Report.BakeCount](#pancake.baker.Report.BakeCount)
+    - [ReportRequest](#pancake.baker.ReportRequest)
+    - [ReportResponse](#pancake.baker.ReportResponse)
+  
+    - [Pancake.Menu](#pancake.baker.Pancake.Menu)
+  
+    - [BakePancakeService](#pancake.baker.BakePancakeService)
+  
 - [sample/proto/sample.proto](#sample/proto/sample.proto)
     - [Email](#sample.Email)
     - [Person](#sample.Person)
     - [SampleRequest](#sample.SampleRequest)
     - [SampleResponse](#sample.SampleResponse)
   
-    - [EmailDomainType](#sample.EmailDomainType)
+    - [Email.EmailDomainType](#sample.Email.EmailDomainType)
   
     - [AddressService](#sample.AddressService)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="sample/proto/pancake.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## sample/proto/pancake.proto
+
+
+
+<a name="pancake.baker.BakeRequest"></a>
+
+### BakeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| menu | [Pancake.Menu](#pancake.baker.Pancake.Menu) |  |  |
+
+
+
+
+
+
+<a name="pancake.baker.BakeResponse"></a>
+
+### BakeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pancake | [Pancake](#pancake.baker.Pancake) |  |  |
+
+
+
+
+
+
+<a name="pancake.baker.Pancake"></a>
+
+### Pancake
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| baker_name | [string](#string) |  | name of chef |
+| menu | [Pancake.Menu](#pancake.baker.Pancake.Menu) |  |  |
+| techinical_score | [float](#float) |  | bakeing score |
+| create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | creation timestamp |
+
+
+
+
+
+
+<a name="pancake.baker.Report"></a>
+
+### Report
+Report on how much panques were baked
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| bake_counts | [Report.BakeCount](#pancake.baker.Report.BakeCount) | repeated |  |
+
+
+
+
+
+
+<a name="pancake.baker.Report.BakeCount"></a>
+
+### Report.BakeCount
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| menu | [Pancake.Menu](#pancake.baker.Pancake.Menu) |  |  |
+| count | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="pancake.baker.ReportRequest"></a>
+
+### ReportRequest
+
+
+
+
+
+
+
+<a name="pancake.baker.ReportResponse"></a>
+
+### ReportResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| report | [Report](#pancake.baker.Report) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="pancake.baker.Pancake.Menu"></a>
+
+### Pancake.Menu
+pacake menu
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN | 0 |  |
+| CLASSIC | 1 |  |
+| BANANA | 2 |  |
+| BACON_AND_CHEESE | 3 |  |
+| BERRY | 4 |  |
+
+
+ 
+
+ 
+
+
+<a name="pancake.baker.BakePancakeService"></a>
+
+### BakePancakeService
+Service about Pancake
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Bake | [BakeRequest](#pancake.baker.BakeRequest) | [BakeResponse](#pancake.baker.BakeResponse) | bake pancake service on the specified menu |
+| Report | [ReportRequest](#pancake.baker.ReportRequest) | [ReportResponse](#pancake.baker.ReportResponse) | Get the total number of panques for each menu |
+
+ 
 
 
 
@@ -33,7 +192,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | address | [string](#string) |  | email address |
-| domain | [EmailDomainType](#sample.EmailDomainType) |  | domain type |
+| domain | [Email.EmailDomainType](#sample.Email.EmailDomainType) |  | domain type |
 
 
 
@@ -90,9 +249,9 @@
  
 
 
-<a name="sample.EmailDomainType"></a>
+<a name="sample.Email.EmailDomainType"></a>
 
-### EmailDomainType
+### Email.EmailDomainType
 
 
 | Name | Number | Description |
