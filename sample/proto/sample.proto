@@ -36,7 +36,7 @@ message Person {
 
 message Email {
   enum EmailDomainType {
-    UNSPECIFIED_UNKNOWN = 0; // @exclude match API specifications
+    EMAIL_DOMAIN_TYPE_UNSPECIFIED = 0; // @exclude match API specifications
     EMAIL_DOMAIN_TYPE_GMAIL = 1;  // google
     EMAIL_DOMAIN_TYPE_YAHOO_JAPAN = 2; // yahoo japan
     EMAIL_DOMAIN_TYPE_OUTLOOK = 3; // ms outlook
