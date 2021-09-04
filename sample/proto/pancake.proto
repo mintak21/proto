@@ -1,10 +1,11 @@
 syntax = "proto3";
 
 package pancake.baker;
-option go_package = "github.com/mintak21/proto/sample/golang";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/mintak21/proto/sample/golang";
 
 /**
   Service about Pancake
@@ -30,11 +31,11 @@ service BakePancakeService {
 message Pancake {
   // pacake menu
   enum Menu {
-    UNKNOWN = 0; // @exclude match API specifications
-    CLASSIC = 1;
-    BANANA = 2;
-    BACON_AND_CHEESE = 3;
-    BERRY = 4;
+    MENU_UNKNOWN = 0; // @exclude match API specifications
+    MENU_CLASSIC = 1;
+    MENU_BANANA = 2;
+    MENU_BACON_AND_CHEESE = 3;
+    MENU_BERRY = 4;
   }
 
   string baker_name = 1; // name of chef
@@ -63,7 +64,8 @@ message BakeResponse {
   Pancake pancake = 1;
 }
 
-message ReportRequest {}
+message ReportRequest {
+}
 
 message ReportResponse {
   Report report = 1;

@@ -1,10 +1,11 @@
 syntax = "proto3";
 
 package sample;
-option go_package = "github.com/mintak21/proto/sample/golang";
 
-import "validate/validate.proto";
 import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "github.com/mintak21/proto/sample/golang";
 
 /**
   Service that receives an id and returns Person information
@@ -18,7 +19,8 @@ service AddressService {
 }
 
 message SampleRequest {
-  int64 id = 1 [(validate.rules).int64 = { gt: 0,  lt: 10000 }]; // sequencial id
+  // sequencial id
+  int64 id = 1 [(validate.rules).int64 = { gt: 0,  lt: 10000 }];
 }
 
 message SampleResponse {
@@ -34,11 +36,11 @@ message Person {
 
 message Email {
   enum EmailDomainType {
-    UNKNOWN = 0; // @exclude match API specifications
-    GMAIL = 1;  // google
-    YAHOO_JAPAN = 2; // yahoo japan
-    OUTLOOK = 3; // ms outlook
-    OTHER = 4; // other domains
+    EmailDomainType_UNKNOWN = 0; // @exclude match API specifications
+    EmailDomainType_GMAIL = 1;  // google
+    EmailDomainType_YAHOO_JAPAN = 2; // yahoo japan
+    EmailDomainType_OUTLOOK = 3; // ms outlook
+    EmailDomainType_OTHER = 4; // other domains
   }
 
 
