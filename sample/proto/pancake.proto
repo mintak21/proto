@@ -31,7 +31,7 @@ service BakePancakeService {
 message Pancake {
   // pacake menu
   enum Menu {
-    MENU_UNKNOWN = 0; // @exclude match API specifications
+    UNSPECIFIED_UNKNOWN = 0; // @exclude match API specifications
     MENU_CLASSIC = 1;
     MENU_BANANA = 2;
     MENU_BACON_AND_CHEESE = 3;

@@ -24,7 +24,7 @@ message SampleRequest {
 }
 
 message SampleResponse {
-  string Person = 1; // person info
+  Person person = 1; // person info
 }
 
 message Person {
@@ -36,11 +36,11 @@ message Person {
 
 message Email {
   enum EmailDomainType {
-    EmailDomainType_UNKNOWN = 0; // @exclude match API specifications
-    EmailDomainType_GMAIL = 1;  // google
-    EmailDomainType_YAHOO_JAPAN = 2; // yahoo japan
-    EmailDomainType_OUTLOOK = 3; // ms outlook
-    EmailDomainType_OTHER = 4; // other domains
+    UNSPECIFIED_UNKNOWN = 0; // @exclude match API specifications
+    EMAIL_DOMAIN_TYPE_GMAIL = 1;  // google
+    EMAIL_DOMAIN_TYPE_YAHOO_JAPAN = 2; // yahoo japan
+    EMAIL_DOMAIN_TYPE_OUTLOOK = 3; // ms outlook
+    EMAIL_DOMAIN_TYPE_OTHER = 4; // other domains
   }
 
 
