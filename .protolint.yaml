@@ -1,2 +1,5 @@
 # See. https://github.com/yoheimuta/protolint#rules
-all_default: true
+# Samples. https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+lint:
+  rules:
+    all_default: true
