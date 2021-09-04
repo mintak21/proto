@@ -38,4 +38,4 @@ RUN mkdir -p ${GOPATH}/src/github.com/googleapis \
 # RUN make install
 
 
-WORKDIR /app/build
+WORKDIR ${GOPATH}/src/github.com/mintak21/proto
