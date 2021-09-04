@@ -4,12 +4,17 @@ package sample;
 option go_package = "github.com/mintak21/proto/sample/golang";
 
 import "validate/validate.proto";
+import "google/api/annotations.proto";
 
 /**
  Service that receives an id and returns Person information
  */
 service AddressService {
-  rpc Search(SampleRequest) returns (SampleResponse);
+  rpc Search(SampleRequest) returns (SampleResponse) {
+    option (google.api.http) = {
+      get: "/v1/sample/address/{id}"  // id is defined in GetTaskRequest
+    };
+  }
 }
 
 message SampleRequest {
