@@ -150,11 +150,11 @@ pacake menu
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWN | 0 |  |
-| CLASSIC | 1 |  |
-| BANANA | 2 |  |
-| BACON_AND_CHEESE | 3 |  |
-| BERRY | 4 |  |
+| MENU_UNSPECIFIED | 0 |  |
+| MENU_CLASSIC | 1 |  |
+| MENU_BANANA | 2 |  |
+| MENU_BACON_AND_CHEESE | 3 |  |
+| MENU_BERRY | 4 |  |
 
 
  
@@ -210,7 +210,7 @@ Service about Pancake
 | id | [int32](#int32) |  | sequencial id |
 | name | [string](#string) |  | his/her name |
 | age | [string](#string) |  | his/her age |
-| email | [Email](#sample.Email) | repeated | his/her email |
+| emails | [Email](#sample.Email) | repeated | his/her email |
 
 
 
@@ -240,7 +240,7 @@ Service about Pancake
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| Person | [string](#string) |  | person info |
+| person | [Person](#sample.Person) |  | person info |
 
 
 
@@ -256,11 +256,11 @@ Service about Pancake
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWN | 0 |  |
-| GMAIL | 1 | google |
-| YAHOO_JAPAN | 2 | yahoo japan |
-| OUTLOOK | 3 | ms outlook |
-| OTHER | 4 | other domains |
+| EMAIL_DOMAIN_TYPE_UNSPECIFIED | 0 |  |
+| EMAIL_DOMAIN_TYPE_GMAIL | 1 | google |
+| EMAIL_DOMAIN_TYPE_YAHOO_JAPAN | 2 | yahoo japan |
+| EMAIL_DOMAIN_TYPE_OUTLOOK | 3 | ms outlook |
+| EMAIL_DOMAIN_TYPE_OTHER | 4 | other domains |
 
 
  

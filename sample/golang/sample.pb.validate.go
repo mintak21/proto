@@ -113,7 +113,15 @@ func (m *SampleResponse) Validate() error {
 		return nil
 	}
 
-	// no validation rules for Person
+	if v, ok := interface{}(m.GetPerson()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return SampleResponseValidationError{
+				field:  "Person",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	return nil
 }
@@ -185,13 +193,13 @@ func (m *Person) Validate() error {
 
 	// no validation rules for Age
 
-	for idx, item := range m.GetEmail() {
+	for idx, item := range m.GetEmails() {
 		_, _ = idx, item
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return PersonValidationError{
-					field:  fmt.Sprintf("Email[%v]", idx),
+					field:  fmt.Sprintf("Emails[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}

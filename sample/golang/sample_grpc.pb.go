@@ -39,21 +39,19 @@ func (c *addressServiceClient) Search(ctx context.Context, in *SampleRequest, op
 }
 
 // AddressServiceServer is the server API for AddressService service.
-// All implementations must embed UnimplementedAddressServiceServer
+// All implementations should embed UnimplementedAddressServiceServer
 // for forward compatibility
 type AddressServiceServer interface {
 	Search(context.Context, *SampleRequest) (*SampleResponse, error)
-	mustEmbedUnimplementedAddressServiceServer()
 }
 
-// UnimplementedAddressServiceServer must be embedded to have forward compatible implementations.
+// UnimplementedAddressServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedAddressServiceServer struct {
 }
 
 func (UnimplementedAddressServiceServer) Search(context.Context, *SampleRequest) (*SampleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
 }
-func (UnimplementedAddressServiceServer) mustEmbedUnimplementedAddressServiceServer() {}
 
 // UnsafeAddressServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to AddressServiceServer will

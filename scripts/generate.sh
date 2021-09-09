@@ -12,6 +12,7 @@ protoc -I. \
   -I ${GOPATH}/src/github.com/googleapis \
   --go_out=${GOPATH}/src \
   --go-grpc_out=${GOPATH}/src \
+  --go-grpc_opt=require_unimplemented_servers=false \
   --validate_out="lang=go:${GOPATH}/src" \
   --doc_out=./${directory}/doc --doc_opt=markdown,doc.md \
   ./${directory}/proto/*.proto

@@ -17,3 +17,7 @@ make generate
 - [Quick Start(Go)](https://grpc.io/docs/languages/go/quickstart/)
 - [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 - [gRPC-Web](https://github.com/improbable-eng/grpc-web/tree/master/go/grpcweb)
+
+## others
+
+- `--go-grpc_opt=require_unimplemented_servers=false`オプションを使用しないと、mustEmbedUnimplemented**が定義されてしまう
