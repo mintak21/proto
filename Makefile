@@ -1,5 +1,5 @@
 export DOCKER_BUILDKIT=1
-IMAGE=ghcr.io/mintak21/proto-builder:latest
+IMAGE=ghcr.io/mintak21/proto/builder:latest
 BUILD_PATH=/go/src/github.com/mintak21/proto
 
 .PHONY: build prepare
