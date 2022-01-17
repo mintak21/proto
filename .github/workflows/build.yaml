@@ -1,63 +1,12 @@
 name: build generator image
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - Dockerfile
-
-env:
-  DOCKER_BUILDKIT: 1
-  image_repo: builder
+  tags:
+    - "v*.*.*"
+  pull_request:
 
 jobs:
   build:
-    name: Build And Push Docker Image
-    runs-on: ubuntu-20.04
-    permissions:
-      packages: write
-      contents: read
-
-    steps:
-      - name: Checkout code
-        id: checkout
-        uses: actions/checkout@v2
-
-      - name: Set up QEMU
-        id: qemu
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        id: builder
-        uses: docker/setup-buildx-action@v1
-        with:
-          version: v0.7.1
-
-      - name: Login to Github Container Registry
-        id: login
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ghcr.io/${{ github.repository }}/${{ env.image_repo }}
-          flavor: |
-            latest=true
-            prefix=
-            suffix=
-
-      - name: Build and Push Image
-        id: build-push
-        uses: docker/build-push-action@v2
-        with:
-          builder: ${{ steps.builder.outputs.name }}
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+    uses: mintak21/actions/.github/workflows/build_ghcr.yml@455fd8166bf2cccda3735890a4026cfc9e1c1bed
+    with:
+      image: ${{ github.repository }}/builder
