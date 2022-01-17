@@ -1,8 +1,9 @@
 name: build generator image
 
 on:
-  tags:
-    - "v*.*.*"
+  push:
+    tags:
+      - "v*.*.*"
   pull_request:
 
 jobs:
